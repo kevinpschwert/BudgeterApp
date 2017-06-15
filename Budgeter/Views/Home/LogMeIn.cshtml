@@ -1,0 +1,182 @@
+﻿@using BudgetApp.Models
+@model LoginViewModel
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Financial Surety</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <link rel="icon" href="~/images/favicon-32x32.png" sizes="32X32" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="~/dist/css/AdminLTE.css" rel="stylesheet" />
+    <!-- iCheck -->
+    <link href="~/plugins/iCheck/square/blue.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="container">
+        <div class="row" id="loginpage">
+            <div class="col-md-2">               
+                <h1 style="font-size: 70px;color: white;font-family: Brush Script Std, Brush Script MT, cursive;">
+                    Financial
+                </h1>
+                <h1 style="font-size: 70px;color: white;font-family: Brush Script Std, Brush Script MT, cursive;">Surety</h1>
+            </div>
+            <div class="col-md-8">
+                <div class="wrap">
+                    <p class="form-title">
+                        Sign In
+                    </p>
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+
+                        <form class="login">
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <h5 style="color:white">E-Mail</h5>
+                            <div class="form-group has-feedback">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            </div>
+                            <h5 style="color:white">Password</h5>
+                            <div class="form-group has-feedback">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary btn-block btn-flat" style="background-color:#3e87b2">Sign In</button>
+                            <br />
+                            <div class="remember-forgot">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div>
+                                            <label id="changecolor">
+                                                <a style="background-color:white" href="javascription:void(0)" class="forgot-pass">@Html.ActionLink("Register", "RegisterMe", "Home")</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label id="changecolor">
+                                            <a style="background-color:white">@Html.ActionLink("Forgot Password", "ForgotPassword", "Account")</a>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    }
+                    @using (Html.BeginForm("Demo", "Account"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" style="background-color:#3e87b2">Demo Role</button>
+                    }
+
+
+                </div>
+            </div>
+            </div>
+        </div>            
+    <div class="container-fluid">
+        <div class="row" id="description">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="landing">
+                <br />
+                <br />
+                <br />
+                <center><h2 style="color:black;"><b><u>Welcome to My Financial Application</u></b></h2></center>
+                <br />
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 style="color:black;">
+                            One of the biggest problems that we all face is having to keep up of our finances. It is so easy
+                            to lose track of how much we have spent and where we have spent it and how much we have left. What
+                            you need is an application that takes care of tracking your finances for you. Through the use of this
+                            program you are able to create a household and in that household is the people that you want to invite.
+                            Only members of individuals households are able to see their finances and transactions and budgets. 
+                        </h4>
+                    </div>
+                    <div class="col-md-4">
+                        <img id="landingchart" src="~/images/landingchart.jpg" />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <img id="cashflow" src="~/images/CashFlow.jpg" />
+                    </div>
+                    <div class="col-md-8">
+                       <h4 style="color:black;">
+                           Through that there is immense security that others cannot view what your portfolio looks like. Built into this application
+                           there are charts and graphs that will track the amount that you have spent and what categories you have
+                           spent your money on. You are able to set up budgets for your finances and you can track how much you spend on your budgets.
+                           There is also a budget history that is given to you so that way you can look back on the year and see month to month
+                           how much you spent and how you are doing with your budgets. Allow this to be a sense of peace because you can
+                           have confidence knowing where your money has been spent. I hope that this can help provide you with the surety that is
+                           needed in our hectic lives so that way you are able to enjoy the beautiful parts of it all.
+                       </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3" id="logo">
+                        <img src="~/images/c-sharp-tutors-online.png" />
+                    </div>
+                    <div class="col-md-3" id="logo1">
+                        <img src="~/images/ef.jpg" />
+                    </div>
+                    <div class="col-md-3" id="logo">
+                        <img src="~/images/NET-Framework-4.5.png" />
+                    </div>
+                    <div class="col-md-3" id="logo1">
+                        <img src="~/images/ajax.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    
+
+    <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/bootstrap/js/bootstrap.js"></script>
+    <!-- iCheck -->
+    <script src="~/plugins/iCheck/icheck.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.forgot-pass').click(function (event) {
+                $(".pr-wrap").toggleClass("show-pass-reset");
+            });
+
+            $('.pass-reset-submit').click(function (event) {
+                $(".pr-wrap").removeClass("show-pass-reset");
+            });
+        });
+    </script>
+</body>
+</html>
+

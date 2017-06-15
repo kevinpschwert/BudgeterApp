@@ -1,0 +1,175 @@
+﻿@model BudgetApp.Models.IndexViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Budget App</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="~/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/img/favicon-32x32.png" sizes="32x32" />
+    <!-- iCheck -->
+    <link href="~/plugins/iCheck/square/blue.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pr-wrap">
+                    <div class="pass-reset">
+                        <label>
+                            Enter the email you signed up with
+                        </label>
+                        <input type="email" placeholder="Email" />
+                        <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4" style="background-color:rgb(3, 167, 92, 0);margin-top:100px;width:400px;">
+                    <div class="register-box">
+                        <div class="login-logo">
+                            <h1 style="color:white;">
+                                <b>
+                                    Financial Portal
+                                </b>
+                            </h1>
+                        </div>
+
+
+                        <p class="text-success">@ViewBag.StatusMessage</p>
+                        <div>
+                            <h4 style="color:white;">Change your account settings</h4>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt style="color:white;">Password:</dt>
+                                <dd>
+                                    [
+                                    @if (Model.HasPassword)
+            {
+                                        @Html.ActionLink("Change your password", "ChangePassword")
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Create", "SetPassword")
+                                    }
+                                    ]
+                                </dd>
+                                <dt style="color:white;">Change Name</dt>
+                                @using (Html.BeginForm("ChangeName", "Manage", FormMethod.Post, new { @style = "width:350px" }))
+                                {
+
+                                    <dd style="width:0;"><input type="text" name="newName" /></dd>
+                                    <dd style="width:0;"><button type="submit">Change</button></dd>
+                                }
+                                @*<dt style="color:white;">External Logins:</dt>
+                                <dd>
+                                    @Model.Logins.Count [
+                                    @Html.ActionLink("Manage", "ManageLogins") ]
+                                </dd>*@
+                                @*
+                                    Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+                                     See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+                                     Uncomment the following block after you have set up two-factor authentication
+                                *@
+                                @*
+                                    <dt>Phone Number:</dt>
+                                    <dd>
+                                        @(Model.PhoneNumber ?? "None")
+                                        @if (Model.PhoneNumber != null)
+                                        {
+                                            <br />
+                                            <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                                            using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                                        }
+                                    </dd>
+                                *@
+                                @*<dt>Two-Factor Authentication:</dt>
+                                    <dd>
+                                        <p>
+                                            There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                            for details on setting up this ASP.NET application to support two-factor authentication.
+                                        </p>*@
+                                @*@if (Model.TwoFactor)
+                                    {
+                                        using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <text>Enabled
+                                            <input type="submit" value="Disable" class="btn btn-link" />
+                                            </text>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <text>Disabled
+                                            <input type="submit" value="Enable" class="btn btn-link" />
+                                            </text>
+                                        }
+                                    }*@
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        </div>
+
+        <!-- /.login-box -->
+        <!-- jQuery 2.2.3 -->
+       <script src="~/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/bootstrap/js/bootstrap.js"></script>
+    <!-- iCheck -->
+    <script src="~/plugins/iCheck/icheck.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.forgot-pass').click(function (event) {
+                $(".pr-wrap").toggleClass("show-pass-reset");
+            });
+
+            $('.pass-reset-submit').click(function (event) {
+                $(".pr-wrap").removeClass("show-pass-reset");
+            });
+        });
+    </script>
+</body>
+</html>
+
+
